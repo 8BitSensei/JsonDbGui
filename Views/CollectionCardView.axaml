@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             x:Class="JsonDbGui.Views.CollectionCardView"
+             xmlns:vm="using:JsonDbGui.ViewModels"
+             x:DataType="vm:CollectionCardViewModel">
+
+  <Border Background="#2b2b2b" BoxShadow="1 1 5 1 Black" HorizontalAlignment="Center" CornerRadius="10" Margin="5" Width="300">
+    <StackPanel>
+      <Grid Margin="10" ColumnDefinitions="*, Auto" RowDefinitions="Auto, *">
+        <TextBlock Margin="0 0 50 0" FontSize="25" FontWeight="Bold" HorizontalAlignment="Left" Text="{Binding CollectionName}"/>
+        <PathIcon Data="{Binding CollectionIcon}" HorizontalAlignment="Right" Grid.Row="0" Grid.Column="1"/>
+        <StackPanel Grid.Row="1">
+          <TextBlock Margin="0 5" Text="{Binding CollectionDescription}"/>
+        </StackPanel>
+      </Grid>
+      <Border Classes="SubBorder" Background="#202020" VerticalAlignment="Bottom" CornerRadius="0 0 10 10">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+          <Button Background="#2b2b2b">
+            Delete
+          </Button>
+          <Button Background="#2b2b2b">
+            View
+          </Button>
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </Border>
+</UserControl>

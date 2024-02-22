@@ -1,0 +1,46 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:JsonDbGui.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="vm:CollectionsPageViewModel"
+             x:Class="JsonDbGui.Views.CollectionsPageView">
+  <DockPanel>
+    <StackPanel>
+      <Grid ColumnDefinitions="* Auto">
+        <Expander Grid.Column="0" VerticalAlignment="Top" DockPanel.Dock="Top"
+                Header="HorizontalAlignment=Stretch, Background=Transparent" HorizontalAlignment="Stretch" Background="Transparent">
+          <Expander.Header>
+            <TextBox Watermark="Search Collections...." />
+          </Expander.Header>
+          <Grid RowDefinitions="*,*,*" ColumnDefinitions="90,*" Background="Transparent">
+            <TextBlock Grid.Row="0" Grid.Column="0"
+                       VerticalAlignment="Center">Github</TextBlock>
+            <CheckBox Grid.Row="0" Grid.Column="1" IsChecked="true"/>
+            <TextBlock Grid.Row="1" Grid.Column="0"
+                       VerticalAlignment="Center">Local</TextBlock>
+            <CheckBox Grid.Row="1" Grid.Column="1" IsChecked="true"/>
+            <TextBlock Grid.Row="2" Grid.Column="0"
+                       VerticalAlignment="Center">Amazon S3</TextBlock>
+            <CheckBox Grid.Row="2" Grid.Column="1" IsChecked="true"/>
+          </Grid>
+        </Expander>
+        <Button Grid.Column="1" Margin="7" Background="Transparent" VerticalAlignment="Top" Command="{Binding AddCollection}">
+          <PathIcon Data="{StaticResource add_regular}"/>
+        </Button>
+      </Grid>
+      
+      <ProgressBar IsIndeterminate="True" IsVisible="{Binding IsBusy}" />
+      <ScrollViewer HorizontalAlignment="Left">
+        <ItemsControl ItemsSource="{Binding Collections}" Margin="40">
+          <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+              <WrapPanel />
+            </ItemsPanelTemplate>
+          </ItemsControl.ItemsPanel>
+        </ItemsControl>
+      </ScrollViewer>
+    </StackPanel>
+  </DockPanel>
+</UserControl>

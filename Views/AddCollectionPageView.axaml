@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="using:JsonDbGui.ViewModels"
+             x:DataType="vm:AddCollectionPageViewModel"
+             x:Class="JsonDbGui.Views.AddCollectionPageView">
+  <StackPanel>
+    <Grid ColumnDefinitions="Auto, Auto" RowDefinitions="Auto Auto Auto" Margin="50" HorizontalAlignment="Center">
+      <Label Grid.Row="0" Grid.Column="0" Margin="0 0 50 10">Name</Label>
+      <TextBox Text="{Binding Name}" Grid.Row="0" Grid.Column="1" Margin="0 0 50 10" Width="300"/>
+
+      <Label Grid.Row="1" Grid.Column="0" Margin="0 0 50 10">Description</Label>
+      <TextBox Text="{Binding Description}" Grid.Row="1"  Grid.Column="1" Margin="0 0 50 10"/>
+
+      <Label Grid.Row="2" Grid.Column="0" Margin="0 0 50 10">Type</Label>
+      <ComboBox SelectedIndex="0" MaxDropDownHeight="100" Grid.Row="2"  Grid.Column="1" Margin="0 0 50 10">
+        <ComboBoxItem>Local</ComboBoxItem>
+        <ComboBoxItem>Amazon S3</ComboBoxItem>
+        <ComboBoxItem>Github</ComboBoxItem>
+      </ComboBox>
+    </Grid>
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+      <Button Margin="10" Command="{Binding Add}">Add</Button>
+    </StackPanel>
+  </StackPanel>
+  
+</UserControl>
