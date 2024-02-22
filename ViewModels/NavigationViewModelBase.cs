@@ -1,4 +1,4 @@
-﻿using Avalonia.Controls;
+﻿using DialogHostAvalonia;
 using JsonDbGui.Models;
 using ReactiveUI;
 using System;
@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive;
+using System.Threading.Tasks;
 
 namespace JsonDbGui.ViewModels
 {
@@ -13,6 +14,7 @@ namespace JsonDbGui.ViewModels
     {
         private bool _isPaneOpen;
         private bool _subPage;
+        private bool _isDialogOpen;
         private NavigationItem? _currentMenuSelection;
 
         private ViewModelBase? _currentPage;
@@ -22,7 +24,7 @@ namespace JsonDbGui.ViewModels
         public ReactiveCommand<Unit, Unit> RevertPage { get; }
         public ObservableCollection<NavigationItem> Items { get; } = new();
 
-        public NavigationViewModelBase() 
+        public NavigationViewModelBase()
         {
             OpenPane = ReactiveCommand.Create(OpenPaneImpl);
             RevertPage = ReactiveCommand.Create(RevertPageImpl);
@@ -30,15 +32,25 @@ namespace JsonDbGui.ViewModels
                 .Subscribe(x =>
                 {
                     SetCurrentPage(x);
-                    _navigationHistory?.Add(x);
+                    AddPageHistory(x);
                 });
         }
 
+        public async Task ShowDialog(object content) => await DialogHost.Show(content);
+
         public void OpenPaneImpl() => IsPaneOpen = !_isPaneOpen;
 
-        public void AddPageHistory(NavigationItem navItem) => _navigationHistory?.Add(navItem);
+        public void AddPageHistory(NavigationItem navItem) 
+        {
+            if(navItem is not null)
+                _navigationHistory?.Add(navItem);
+        }
 
-        public void AddListItem(NavigationItem navItem) => Items?.Add(navItem);
+        public void AddListItem(NavigationItem navItem) 
+        { 
+            if(navItem is not null)
+                Items?.Add(navItem); 
+        }
 
         public void RevertPageImpl()
         {
@@ -80,6 +92,12 @@ namespace JsonDbGui.ViewModels
         {
             get => _subPage;
             set => this.RaiseAndSetIfChanged(ref _subPage, value);
+        }
+
+        public bool IsDialogOpen
+        {
+            get => _isDialogOpen;
+            set => this.RaiseAndSetIfChanged(ref _isDialogOpen, value);
         }
 
         public ViewModelBase? CurrentPage

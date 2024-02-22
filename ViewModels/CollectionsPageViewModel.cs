@@ -53,14 +53,14 @@ namespace JsonDbGui.ViewModels
                     if(i <= Collections.Count() - 1)
                         Collections.RemoveAt(i);
                 }
-                    
             }
-
         }
 
         public void AddCollectionImpl()
         {
-            _main.SetCurrentPage(new NavigationItem(typeof(AddCollectionPageViewModel)));
+            var addCollectionViewModel = new NavigationItem(typeof(AddCollectionPageViewModel));
+            _main.SetCurrentPage(addCollectionViewModel);
+            _main.AddPageHistory(addCollectionViewModel);
         }
 
         public bool IsBusy

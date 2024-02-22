@@ -30,11 +30,10 @@ namespace JsonDbGui
                 .UseContentRoot(AppContext.BaseDirectory)
                 .ConfigureServices((context, services) =>
                 {
-                    services.AddLocalJsonDb(options => 
+                    services.AddLocalJsonDb(options =>
                     {
                         options.DbPath = "C:\\jsonDb"; //TODO: Put this in appsettings and make it relative
                     });
-
                 })
                 .Build();
 
