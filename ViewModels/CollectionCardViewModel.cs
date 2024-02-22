@@ -1,8 +1,10 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Media;
+using DialogHostAvalonia;
 using JsonDbGui.Models;
 using ReactiveUI;
+using System;
 using System.Reactive;
 using System.Threading.Tasks;
 
@@ -61,13 +63,13 @@ namespace JsonDbGui.ViewModels
 
         public Task OpenCollectionImpl()
         {
-            //_main.SetCurrentPage(new NavigationItem(typeof(SubPageViewModel), "settings_regular"));
             return Task.CompletedTask;
         }
 
-        public Task RemoveCollectionImpl()
+        public async Task RemoveCollectionImpl()
         {
-            return Task.CompletedTask;
+            var removeDialog = new RemoveDialogViewModel(_main, CollectionName);
+            await _main.ShowDialog(removeDialog);
         }
     }
 }

@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="using:JsonDbGui.ViewModels"
+             x:DataType="vm:RemoveDialogViewModel"
+             x:Class="JsonDbGui.Views.RemoveDialogView">
+  <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+    <TextBlock FontWeight="Bold" Margin="15">
+      Are sure you want to delete this collection?
+    </TextBlock>
+    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+      <Button Margin="0 0 20 0" FontWeight="Bold" Command="{Binding Cancel}">
+        Cancel
+      </Button>
+      <Button FontWeight="Bold" Command="{Binding Delete}">
+        Delete
+      </Button>
+    </StackPanel>
+  </StackPanel>
+</UserControl>
